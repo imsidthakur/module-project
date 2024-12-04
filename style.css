@@ -1,0 +1,22 @@
+body{
+    margin: 10px;
+    padding: 0px;
+}
+
+#current-image-container{
+    background-color: black;
+    color: white;
+    padding: 20px;
+}
+
+#picture{
+    width: fit-content;
+    height: 400px;
+    max-width : -webkit-fill-available;
+}
+
+a{
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
