@@ -1,5 +1,3 @@
-import fetch from 'node-fetch'
-
 export const handler = async (event) => {
   const { date } = event.queryStringParameters;
   const apiKey = process.env.NASA_API_KEY;
