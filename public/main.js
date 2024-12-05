@@ -1,4 +1,3 @@
-const apiKey = "0uPEX2m6VLBphzldYevADOf4gXuwRYplbK0t0sw8";
 const imageHeading = document.getElementById("picture-heading");
 const imageTitle = document.getElementById("picture-title");
 const imageExplanation = document.getElementById("picture-explanation");
@@ -9,12 +8,15 @@ const ul = document.getElementById("search-history");
 
 form.addEventListener("submit",getImageOfTheDay)
 ul.addEventListener("click",handlePreviousLinkClick)
-async function getImage(date)
-{
-   const api = `https://api.nasa.gov/planetary/apod?date=${date}&api_key=${apiKey}`;
-   const data = await fetch(api).then((res)=> res.json());
-   return data;
-}
+
+
+async function getImage(date) {
+    const api = `/.netlify/functions/fetch-nasa-image?date=${date}`;
+    const data = await fetch(api).then((res) => res.json());
+    return data;
+  }
+
+
 async function getCurrentImageOfTheDay()
 {
     const currentDate = new Date().toISOString().split("T")[0];
