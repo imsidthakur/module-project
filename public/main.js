@@ -12,9 +12,22 @@ ul.addEventListener("click",handlePreviousLinkClick)
 
 async function getImage(date) {
     const api = `/.netlify/functions/fetch-nasa-image?date=${date}`;
-    const data = await fetch(api).then((res) => res.json());
-    return data;
+  
+    try {
+      const response = await fetch(api);
+    //   if (!response.ok) {
+    //     throw new Error(`Error: ${response.status} - ${response.statusText}`);
+    //   }
+      const data = await response.json();
+      if(data?.code == 404) return;
+      console.log("data", data);
+      return data;
+    } catch (error) {
+      console.error("Fetch error:", error);
+      return { error: error.message };
+    }
   }
+  
 
 
 async function getCurrentImageOfTheDay()
@@ -37,7 +50,7 @@ async function getImageOfTheDay(e)
 
 function renderData(data)
 {
-    if(data.media_type == "video")
+    if(data?.media_type == "video")
     {
         if(image?.nodeName == "IMG")
         {
